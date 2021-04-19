@@ -3,8 +3,12 @@
 
 
 class Sim {
-    
+public:
+    Sim(); 
 };
 
+Sim::Sim() {
+    
+}
 
 #endif

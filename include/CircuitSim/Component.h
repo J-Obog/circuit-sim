@@ -1,8 +1,6 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H 
 
-
-
 class Component {
 protected:
     int** inputs; 
@@ -10,31 +8,53 @@ protected:
     int inputSize, outputSize; 
 
 public:
+    Component();
     Component(int numInputs, int numOutputs);
     ~Component(); 
-    virtual void setState() = 0; 
+    virtual void setState() {}; 
+    int& pinOut(int pin) const;
+    int pinIn(int pin) const; 
+    void pinIn(int pin, int* input); 
 };
 
+Component::Component() {
+    outputs = new int[0]; 
+    inputs = new int*[0];  
+
+    inputSize = 0; 
+    outputSize = 0;
+ 
+    setState(); 
+}
+
 Component::Component(int numInputs, int numOutputs) {
-    inputs = new int*[numInputs];
-    outputs = new int[numOutputs]; 
+    inputSize = (numInputs >= 0) ? numInputs : 0; 
+    outputSize = (numOutputs >= 0) ? numOutputs : 0; 
 
-    for(int i = 0; i < numInputs; i++)
-        inputs[i] = nullptr; 
+    outputs = new int[outputSize]; 
+    inputs = new int*[inputSize]; 
 
-    for(int i = 0; i < numOutputs; i++)
-        outputs[i] = -1; 
-
-    inputSize = numInputs; 
-    outputSize = outputSize;  
+    setState();  
 }
 
 Component::~Component() {
-    for(int i = 0; i < inputSize; i++)
-        delete inputs[i]; 
-    
-    delete[] inputs; 
-    delete outputs; 
+    delete[] inputs;
+    delete outputs;  
+} 
+
+int& Component::pinOut(int pin) const {
+    if(pin >= 0 && pin < outputSize)
+        return outputs[pin]; 
 }
+
+int Component::pinIn(int pin) const {
+    if(pin >= 0 && pin < inputSize)
+        return *(inputs[pin]); 
+} 
+
+void Component::pinIn(int pin, int* input) {
+    if(pin >= 0 && pin < inputSize) 
+        inputs[pin] = input; 
+} 
 
 #endif
