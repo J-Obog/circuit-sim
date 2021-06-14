@@ -10,4 +10,4 @@ add_executable(csim
     ${CMAKE_CURRENT_SOURCE_DIR}/src/circuit.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/and_gate.cpp
 )
-target_include_directories(csim PUBLIC ${SRC_DIR})
+target_include_directories(csim PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
