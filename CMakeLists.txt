@@ -1,13 +1,17 @@
-cmake_minimum_required(VERSION 3.10)
-project(csim VERSION 1.0)
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+cmake_minimum_required(VERSION 3.16)
+project(CSim VERSION 1.0 LANGUAGES CXX)
 
-add_executable(csim
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/simulation.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/pin.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/circuit.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/and_gate.cpp
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+
+add_executable(CSim 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 )
-target_include_directories(csim PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+target_link_libraries(CSim PRIVATE Qt6::Widgets)
