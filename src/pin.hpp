@@ -10,7 +10,6 @@ class Pin {
         PinMode _mode;
         PinPull _pull; 
         PinValue _val;
-    
     public:
         Pin(); 
         Pin(PinMode mode, PinValue val, PinPull pull); 
