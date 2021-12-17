@@ -13,7 +13,7 @@ class PinMode(enum.Enum):
     BIDIR = 2
 
 class Pin(BaseComponent):
-    def __init__(self, pos: Tuple[int, int], label: str, m: PinMode, v: PinState = PinState.FLOATING):
+    def __init__(self, pos: Tuple[int, int], label: str, m: PinMode, v: PinState = PinState.LOW):
         super().__init__(pos, label)
         self.__v: PinState = v
         self.__m: PinMode = m
