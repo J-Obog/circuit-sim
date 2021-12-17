@@ -1,4 +1,5 @@
 from csim.component import Component
+from typing import Tuple
 import enum
 
 class PinState(enum.Enum):
@@ -12,7 +13,21 @@ class PinMode(enum.Enum):
     BIDIR = 2
 
 class Pin(Component):
-    def __init__(self, x: int, y: int, label: str, m: PinMode, v: PinState = PinState.FLOATING):
-        super().__init__(x, y, label)
-        self.v: PinState = v
-        self.m: PinMode = m
+    def __init__(self, pos: Tuple[int, int], label: str, m: PinMode, v: PinState = PinState.FLOATING):
+        super().__init__(pos, label)
+        self.__v: PinState = v
+        self.__m: PinMode = m
+    
+    def setVal(self, v: PinState):
+        self.__v = v
+    
+    def getVal(self) -> PinState:
+        return self.__v
+
+    def setMode(self, m: PinMode):
+        self._m = m
+
+    def getMode(self) -> PinMode:
+        return self.__m
+
+
