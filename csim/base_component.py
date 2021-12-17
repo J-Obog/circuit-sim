@@ -1,6 +1,6 @@
 from typing import Tuple
 
-class Component:
+class BaseComponent:
     def __init__(self, pos: Tuple[int, int], label: str):
         self._x: int = pos[0]
         self._y: int = pos[1]

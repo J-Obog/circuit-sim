@@ -1,4 +1,4 @@
-from csim.component import Component
+from csim.base_component import BaseComponent
 from typing import Tuple
 import enum
 
@@ -12,7 +12,7 @@ class PinMode(enum.Enum):
     OUTPUT = 1
     BIDIR = 2
 
-class Pin(Component):
+class Pin(BaseComponent):
     def __init__(self, pos: Tuple[int, int], label: str, m: PinMode, v: PinState = PinState.FLOATING):
         super().__init__(pos, label)
         self.__v: PinState = v
@@ -29,5 +29,3 @@ class Pin(Component):
 
     def getMode(self) -> PinMode:
         return self.__m
-
-
